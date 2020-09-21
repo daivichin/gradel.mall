@@ -1,0 +1,105 @@
+spring:
+  application:
+    name: dubbo-user-consumer
+  profiles:
+    active: develop
+  rocketmq:
+    namesrv: 192.168.100.176:9876
+    producerGroup: gradel_user
+    consumerGroup: gradel_user
+  # 默认使用配置
+  ## 1. DB
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/t_order?allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull
+    username: root
+    password: 123456
+    druid:
+      initial-size: 5
+      min-idle: 10
+      max-active: 20
+      max-wait: 6000 # 配置获取连接等待超时的时间
+      time-between-eviction-runs-millis: 2000 #  配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      min-evictable-idle-time-millis:
+      max-evictable-idle-time-millis:
+      validation-query:
+      validation-query-timeout:
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      phy-max-use-count: 1000
+      keep-alive: true
+      filters: stat
+
+  redis:
+#    cluster:
+#      nodes:
+#        - 47.106.172.91:63791
+    password: dengyulong
+    lettuce:
+      pool:
+        min-idle: 5
+        max-idle: 50
+        max-active: 100
+        max-wait: 1000
+    host: 47.106.172.91
+    port: 63791
+    redisson:
+      config: classpath:redisson.yml
+    timeout: 3000
+
+jetcache:
+  statIntervalMinutes: 1
+  areaInCacheName: false
+  local:
+    default: #默认area
+      type: caffeine
+      keyConvertor: fastjson
+  remote:
+    default:
+      type: redis.springdata
+      keyConvertor: fastjson
+      valueEncoder: java
+      valueDecoder: java
+
+server:
+  servlet:
+    context-path: / #设置项目ContextPath
+  port: 8082 #设置Tomcat端口，默认8080
+  tomcat:
+    uri-encoding: UTF-8 #设置Tomcat编码
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+dubbo: #retries service端默认可以重试2次，web端禁用重试
+  application:
+    id: dubbo-user-consumer
+    name: dubbo-user-consumer
+  scan:
+    base-packages: com.gradel.gradel.service.user.domain.service
+  protocol:
+    name: dubbo
+    port: -1
+    id: dubbo-protocol
+  registry:
+    address: nacos://192.168.100.176:8848
+    group: develop #注册分组
+    id: dubbo-registry
+  monitor: #监控台分组
+    group: develop
+  metadata-report:
+    group: develop
+  provider:
+    group: gradel.dev
+    version: dev-1.0.0
+  consumer:
+    group: gradel.dev
+    version: dev-1.0.0
+    check: false
+    validation: true
+    timeout: 10000
+

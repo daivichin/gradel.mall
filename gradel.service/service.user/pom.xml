@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>com.gradel</groupId>
+        <artifactId>gradel.service</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>service.user</artifactId>
+    <packaging>jar</packaging>
+
+    <properties>
+        <dockerfile.maven.version>1.4.0</dockerfile.maven.version>
+        <git.commit.id.plugin.version>2.2.4</git.commit.id.plugin.version>
+        <docker.repostory>docker.mall.vip</docker.repostory>
+        <docker.registry.url>gradel</docker.registry.url>
+        <docker.auth.username>sdeven</docker.auth.username>
+        <docker.auth.password>123456</docker.auth.password>
+
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo-spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo-registry-nacos</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alicp.jetcache</groupId>
+            <artifactId>jetcache-starter-redis-springdata</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>objenesis</artifactId>
+                    <groupId>org.objenesis</groupId>
+                </exclusion>
+            </exclusions>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>spring-tx</artifactId>
+                    <groupId>org.springframework</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.gradel</groupId>
+            <artifactId>common.util</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-extension</artifactId>
+        </dependency>
+
+        <!--mybatis文件生成器模版引擎注入jar-->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-generator</artifactId>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity-engine-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+        </dependency>
+
+        <!--mybatis文件生成器模版引擎注入jar-->
+        <dependency>
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson-spring-boot-starter</artifactId>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.gradel</groupId>
+            <artifactId>user.model</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.gradel</groupId>
+            <artifactId>shared.data</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba.nacos</groupId>
+            <artifactId>nacos-client</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba.spring</groupId>
+            <artifactId>spring-context-support</artifactId>
+            <version>1.0.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.javassist</groupId>
+            <artifactId>javassist</artifactId>
+            <version>3.20.0-GA</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.gradel</groupId>
+            <artifactId>component.jwt.security</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.gradel</groupId>
+            <artifactId>common.rocketmq</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>com.gradel.service.user.UserApplication</mainClass>
+                    <includeSystemScope>true</includeSystemScope>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>jib-maven-plugin</artifactId>
+                <groupId>com.google.cloud.tools</groupId>
+                <version>${jib-maven-plugin.version}</version>
+                <configuration>
+                    <from>
+                        <image>openjdk:8-jre-alpine</image>
+                    </from>
+                    <to>
+                        <image>${docker.registry.url}/${project.artifactId}</image>
+                        <auth>
+                            <username>${docker.auth.username}</username>
+                            <password>${docker.auth.password}</password>
+                        </auth>
+                        <!--Docker 镜像的 tag 这里使用maven定义的版本号-->
+                        <tags>
+                            <tag>${project.version}</tag>
+                        </tags>
+                    </to>
+
+                    <!--容器相关的属性-->
+                    <container>
+                        <!--主类配置-->
+                        <!--<mainClass>UserApplication</mainClass>-->
+                        <!--jvm内存参数-->
+                        <jvmFlags>
+                            <jvmFlag>-Xms2g</jvmFlag>
+                            <jvmFlag>-Xmx2g</jvmFlag>
+                        </jvmFlags>
+                        <!--要暴露的端口-->
+                        <ports>
+                            <port>8080</port>
+                        </ports>
+                        <!--使用该参数将镜像的创建时间与系统时间对其-->
+                        <useCurrentTimestamp>true</useCurrentTimestamp>
+                    </container>
+                    <!--用没配置安全认证的registry-->
+                    <allowInsecureRegistries>true</allowInsecureRegistries>
+                </configuration>
+                <executions>
+                    <!-- 配置mvn package 触发 jib build-->
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
